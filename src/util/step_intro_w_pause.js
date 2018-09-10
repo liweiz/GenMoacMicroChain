@@ -1,4 +1,4 @@
-const enterToContinue = require('../../unused/src/enter_to_continue');
+// const enterToContinue = require('../../unused/src/enter_to_continue');
 const logger = require('../util/logger');
 const ctx = require('../context/process_ctx_proxy');
 
@@ -68,7 +68,7 @@ const stepIntroNPause = async (
   }
 
   if (pauseEnabled) {
-    await enterToContinue();
+    // await enterToContinue();
   }
 
   return true;
