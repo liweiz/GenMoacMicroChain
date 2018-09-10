@@ -1,0 +1,42 @@
+{
+  "name": "@liweizhang/new_demo_subchain",
+  "version": "0.0.2",
+  "description": "moac micro-chain generator",
+  "readme": "README.md",
+  "license": "UNLICENSED",
+  "main": "app.js",
+  "bin": "app.js",
+  "author": "Liwei Zhang <matt.z.lw@gmail.com>",
+  "dependencies": {
+    "chain3": "^0.1.8",
+    "solc": "0.4.21",
+    "bignumber.js": "^7.2.1",
+    "winston": "^3.0.0",
+    "moment-timezone": "0.5.21",
+    "inquirer": "^6.2.0"
+  },
+  "devDependencies": {
+    "eslint": "^5.5.0",
+    "eslint-config-airbnb": "^17.1.0",
+    "eslint-config-prettier": "^3.0.1",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.1",
+    "eslint-plugin-prettier": "^2.6.2",
+    "eslint-plugin-react": "^7.11.1",
+    "prettier": "^1.14.2"
+  },
+  "engines": {
+    "node": ">=10.7.0"
+  },
+  "pkg": {
+    "scripts": [],
+    "assets": [
+      "sol/pangu0.8.4/*",
+      "config.json"
+    ]
+  },
+  "scripts": {
+    "start": "node ./bin/www",
+    "debug": "nodemon --inspect ./bin/www"
+  }
+}

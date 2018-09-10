@@ -1,0 +1,22 @@
+{
+  "mac": {
+    "moac_file_name": "moac",
+    "scsserver_file_name": "scsserver",
+    "project_root_dir_path": "./",
+    "moac_dir_path": "./",
+    "temp_dir_path": "./temp/",
+    "scsserver_dir_path": "./",
+    "genesis_dir_path": "./",
+    "vnodes_dir_path": "./temp/vnodes/",
+    "scs_nodes_dir_path": "./temp/scs_nodes/",
+    "current_dir_relative_form": "./",
+    "console_log_file_path": "./console.log",
+    "datadir_path": "./temp/vnodes/vnode_0"
+  },
+
+  "win32": {
+    "moac_file_name": "moac.exe",
+    "scsserver_file_name": "scsserver.exe",
+    "current_dir_relative_form": ""
+  }
+}
