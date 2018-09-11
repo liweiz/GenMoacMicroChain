@@ -8,7 +8,7 @@ const nodeSync = rawNode => {
    */
   const sideWork = async ctx => {
     try {
-      await sync(ctx.vnode.chain3);
+      await sync(ctx);
     } catch (err) {
       throw err;
     }
