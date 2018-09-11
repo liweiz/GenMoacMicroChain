@@ -76,6 +76,7 @@
     "flush_round": 20,
     "addr": "",
     "min_op_balance_in_moac": 10,
+    "min_registration_fee_in_moac": 1,
     "successful_func_call": {
       "addFund": false,
       "registerOpen": false,

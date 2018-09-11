@@ -211,6 +211,10 @@ The current version is still alpha and only covers very basic features. Please l
 
     min balance for the contract to be able to operate
 
+#### "min_registration_fee_in_moac"
+
+    min deposit requirement for a scsid to register to the micro-chain
+
 #### "successful_func_call"
 
     all func call state on this contract
