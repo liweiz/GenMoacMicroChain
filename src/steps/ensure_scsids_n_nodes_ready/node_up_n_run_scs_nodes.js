@@ -19,6 +19,10 @@ const sideWork = async ctx => {
         ctx.scs_nodes.need_funding.push(scsid);
         ctx.state.scs_nodes.scsids.push(scsid);
       });
+      // to trigger 'state updated' event
+      if (scsids.length > 0) {
+        ctx.state.scs_nodes.scsids = ctx.state.scs_nodes.scsids.concat([]);
+      }
     } catch (err) {
       throw err;
     }

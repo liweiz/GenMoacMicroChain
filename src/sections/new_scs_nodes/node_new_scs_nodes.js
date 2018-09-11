@@ -23,6 +23,10 @@ const newScsNodes = async ctx => {
       logger.info(`scsid caught, ${i + 1}, scs_${i}, ${scsid}`);
       logger.info(`scs node created, ${i + 1}, scs_${i}`);
     }
+    // to trigger 'state updated' event
+    if (newScsids.length > 0) {
+      ctx.state.scs_nodes.scsids = ctx.state.scs_nodes.scsids.concat([]);
+    }
   } catch (err) {
     throw err;
   }

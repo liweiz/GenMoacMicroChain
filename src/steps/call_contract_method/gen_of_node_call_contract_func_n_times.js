@@ -215,8 +215,8 @@ const genOfNode = (
             case ':SubChainProtocolBase':
               switch (funcNameInContract) {
                 case 'register':
-                  ctx.state.subChain_protocol_base.successful_func_call.register.push(
-                    result
+                  ctx.state.subChain_protocol_base.successful_func_call.register = ctx.state.subChain_protocol_base.successful_func_call.register.concat(
+                    [result]
                   );
                   break;
                 default:

@@ -1,5 +1,6 @@
 {
   "private_n_local_run": false,
+  "auto_state_save": true,
 
   "gas_price_gsha": {
     "min": 5,

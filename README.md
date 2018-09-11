@@ -1,16 +1,28 @@
-# Quick start
+# Before You Go
 
 ## Supporting OS
 
 macOS
 
-## How To Use
+## Configure
 
-### Get the repo
+Configuration is done through process_state.json under root dir.
+
+User is recommended to figure out what phase/state of the microChain generation one starts out with to properly configure to have the process run successfully. E.g., after insufficient account balance happened, one finished funding enough moac and try to run the process from somewhere in the middle.
+
+The current project status is still alpha and only covers very basic features. Please let us know, if anything does not work as expected.
+
+## DO NOT USE THIS ON MOAC MAINNET, YET
+
+We are not responsible for any consequence, if anyone use it on MOAC mainnet.
+
+# Quick Start
+
+### STEP 1. Get The Repo
 
 Take the repo to your local machine.
 
-### Install dependencies
+### STEP 2. Install Dependencies
 
 Please make sure you have all dependencies installed before proceeding:
 
@@ -20,7 +32,7 @@ Under root dir of the project folder:
 npm install
 ```
 
-### Set State:
+### STEP 3. Set State:
 
 Review and set ./process_state.json.
 File details can be found in Configuration section below.
@@ -43,7 +55,7 @@ File details can be found in Configuration section below.
 
 - pick and set chain id in "chain_id" of ./process_state.json and "chainId" of ./genesis.json. They have to be same.
 
-### Start Process From CLI
+### STEP 4. Start Process From CLI
 
 Open your CLI tool and go to root dir of the project folder
 
@@ -56,8 +68,6 @@ User can also run above cmd after modifying the process_state.json file to refle
 - when there is any interruption in the process and user manually sets process state meets requirements to proceed again
 
 - when some resources for the process are available piror to the start of the process such as known scsids
-
-Updating state file automatically is coming soon.
 
 ## Log Files
 
@@ -75,17 +85,17 @@ project_root/console.log
 
 ## Configuration
 
-Configuration is done through process_state.json under root dir.
-
-At this moment, user has to figure out what phase/state of the microChain generation one starts out with to properly configure to have the process run successfully. E.g., after insufficient account balance happened, one finished funding enough moac and try to run the process from somewhere in the middle.
-
-The current version is still alpha and only covers very basic features. Please let me know anything not working as expected.
-
 ### Chain
 
 #### "private_n_local_run"
 
     flag indicating if everything is local and run on local private network created on demand. Make sure "chainId" in ./genesis.json is the same as "chain_id" in ./process_state.json and not 101, which is for testnet.
+
+#### "auto_state_save"
+
+    true when user want to automatically save updated process_state to process_state.json during the process run.
+    It can be helpful for you to restart from some interruption and spend less to finish the process.
+    We recommend user to always review the state file and output of the last process session to have it work as expected.
 
 #### "chain_id"
 
@@ -98,20 +108,6 @@ The current version is still alpha and only covers very basic features. Please l
 #### "gas"
 
     "lv" contains three preset levels of gas amount; "usage" contains the level of gas amount used for a specific purpose. E.g., "contract_deployment" is set to use "max" in "lv".
-
-### SCS node
-
-#### "scsids"
-
-    list of known scsids
-
-#### "min_disposable_balance_in_moac"
-
-    base amount requirement as buffer for any scsid so that there will still be some amout to use if the process estimated cost is exceeded.
-
-#### "beneficiary"
-
-    address used for all on-demandly created scs nodes as beneficiary in userconfig.json. Empty string indicates using selected sending address.
 
 ### Vnode
 
@@ -138,6 +134,20 @@ The current version is still alpha and only covers very basic features. Please l
 #### "rpc"
 
     settings for vnode's RPC
+
+### SCS node
+
+#### "scsids"
+
+    list of known scsids
+
+#### "min_disposable_balance_in_moac"
+
+    base amount requirement as buffer for any scsid so that there will still be some amout to use if the process estimated cost is exceeded.
+
+#### "beneficiary"
+
+    address used for all on-demandly created scs nodes as beneficiary in userconfig.json. Empty string indicates using selected sending address.
 
 ### Account
 
