@@ -41,12 +41,10 @@ const runVnode = (nodeDirPath, rpcAddr, rpcPort, cfg) =>
     const argList = [
       '--datadir',
       osNodeDirPath,
-      '--networkid',
-      ctx.state.vnode.chain_id,
       '--rpc',
       '--nodiscover',
       '--verbosity',
-      '5',
+      ctx.state.vnode.log_verbosity,
       '--rpcapi',
       cfg.rpcApi, // cfgObj.rpc.api
       '--rpcaddr',
@@ -56,6 +54,17 @@ const runVnode = (nodeDirPath, rpcAddr, rpcPort, cfg) =>
       '--rpccorsdomain',
       'http://wallet.moac.io'
     ];
+
+    switch (ctx.state.vnode.chain_id) {
+      case 101:
+        argList.push('--testnet');
+        break;
+      case 99:
+        break;
+      default:
+        argList.push('--networkid');
+        argList.push(ctx.state.vnode.chain_id);
+    }
 
     if (cfg.mine) {
       argList.push('--mine');

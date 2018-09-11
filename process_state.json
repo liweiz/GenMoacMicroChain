@@ -32,6 +32,7 @@
     "min_disposable_balance_in_moac": 3,
 
     "chain_id": 101,
+    "log_verbosity": 4,
     "service_endpoint": "127.0.0.1:50062",
 
     "ignore_sync": false,

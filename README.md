@@ -123,6 +123,10 @@ project_root/console.log
 
     base amount requirement as buffer for the sending address so that there will still be some amout to use if the process estimated cost is exceeded.
 
+#### "log_verbosity"
+
+    set verbosity of moac
+
 #### "service_endpoint"
 
     used to generate userconfig.json for new scs node

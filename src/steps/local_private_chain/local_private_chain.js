@@ -6,7 +6,7 @@ const sideWork = async ctx => {
 
 const newContractRequests = rawNode => {
   rawNode.sideWorkDescription = 'create local vnode from ./genesis.json file';
-  rawNode.setSideWork(findNewContracts);
+  rawNode.setSideWork(sideWork);
   return rawNode;
 };
 

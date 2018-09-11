@@ -39,12 +39,10 @@ module.exports = (nodeDirPath, rpcAddr, rpcPort, cfg) =>
     const argList = [
       '--datadir',
       osNodeDirPath,
-      '--networkid',
-      cfg.chainId, // cfgObj.chain_id
       '--rpc',
       // '--nodiscover',
       '--verbosity',
-      '5',
+      cfg.verbosity,
       '--rpcapi',
       cfg.rpcApi, // cfgObj.rpc.api
       '--rpcaddr',
@@ -52,6 +50,17 @@ module.exports = (nodeDirPath, rpcAddr, rpcPort, cfg) =>
       '--rpcport',
       `${rpcPort}`
     ];
+
+    switch (cfg.chainId) {
+      case 101:
+        argList.push('--testnet');
+        break;
+      case 99:
+        break;
+      default:
+        argList.push('--networkid');
+        argList.push(cfg.chainId);
+    }
 
     if (cfg.mine) {
       argList.push('--mine');

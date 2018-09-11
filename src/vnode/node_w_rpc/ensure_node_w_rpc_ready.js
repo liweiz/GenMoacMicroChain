@@ -18,7 +18,8 @@ module.exports = async (datadirPath, mining = false, ms = 8000) => {
     moacFileName: cfg.mac.moac_file_name,
     chainId: `${vnode.chain_id}`,
     rpcApi: vnode.rpc.api,
-    mine: mining
+    mine: mining,
+    verbosity: `${vnode.log_verbosity}`
   });
   console.log(`wait ${ms / 1000} seconds for vnode ready`);
   await sleep(ms);

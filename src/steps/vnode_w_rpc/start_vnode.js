@@ -32,6 +32,7 @@ module.exports = async (state, mining = false, ms = 8000) => {
         moacFileName: cfg.mac.moac_file_name,
         chainId: `${state.vnode.chain_id}`,
         rpcApi: state.vnode.rpc.api,
+        verbosity: `${state.vnode.log_verbosity}`,
         mine: mining
       }
     );
