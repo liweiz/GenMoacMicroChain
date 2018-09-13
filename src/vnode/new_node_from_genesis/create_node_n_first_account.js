@@ -17,7 +17,7 @@ const createNode = require('./create_new_node');
  */
 module.exports = async passcode => {
   try {
-    const objWDatadirPath = await createNode(ctx.state.vnode.name);
+    const objWDatadirPath = await createNode();
 
     const rpcNoMining = await lanuchRPC(objWDatadirPath.datadirPath);
     const chain3 = await rpc(

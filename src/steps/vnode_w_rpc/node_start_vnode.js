@@ -1,4 +1,4 @@
-const start = require('./start_vnode');
+const start = require('../../vnode/node_w_rpc/ensure_preset_node_w_rpc_ready');
 
 const startVnode = rawNode => {
   /**
@@ -8,8 +8,8 @@ const startVnode = rawNode => {
    */
   const launchVnode = async ctx => {
     try {
-      console.log(`ctx.vnode.mining: ${ctx.vnode.mining}`);
-      const vnodeRpc = await start(ctx.state, ctx.vnode.mining);
+      console.log(`vnode will perform mining: ${ctx.vnode.mining}`);
+      const vnodeRpc = await start(ctx.vnode.mining);
       ctx.vnode.process = vnodeRpc.childProcess;
     } catch (err) {
       throw err;

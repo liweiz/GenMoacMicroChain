@@ -18,9 +18,9 @@ switch (process.platform) {
     currentDirRelativeForm = cfg.win32.current_dir_relative_form;
     break;
   default:
-    scsserverDirPath = cfg.mac.scsserver_dir_path;
-    scsNodesDirPath = cfg.mac.scs_nodes_dir_path;
-    scsserverFileName = cfg.mac.scsserver_file_name;
+    scsserverDirPath = cfg.mac.scsserver_executable_to_copy.dir_path;
+    scsNodesDirPath = cfg.mac.scs_nodes.dir_path;
+    scsserverFileName = cfg.mac.scsserver_executable_to_copy.name;
     currentDirRelativeForm = cfg.mac.current_dir_relative_form;
     break;
 }

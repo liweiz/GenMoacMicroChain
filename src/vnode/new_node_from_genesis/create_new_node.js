@@ -5,22 +5,23 @@ const cpStdoToFile = require('../../util/child_process_stdo_to_file');
 /**
  * Initialize a vnode
  *
- * @param {string} nodeName - name of the node used to identify it
  * @returns {Promise<VnodeRpcUp>} - resolve: object with datadirPath field
  */
-module.exports = nodeName =>
+module.exports = () =>
   new Promise((res, rej) => {
     let moacPath;
     let datadirPath;
     let genesisPath;
     switch (process.platform) {
       // TO DO
-      // case "win32":
-      //   break;
+      case 'win32':
+        break;
       default:
-        moacPath = cfg.mac.moac_dir_path + cfg.mac.moac_file_name;
-        datadirPath = cfg.mac.vnodes_dir_path + nodeName;
-        genesisPath = `${cfg.mac.genesis_dir_path}genesis.json`;
+        moacPath =
+          cfg.mac.moac_executable_to_run.dir_path +
+          cfg.mac.moac_executable_to_run.name;
+        datadirPath = cfg.mac.vnode.datadir;
+        genesisPath = `${cfg.mac.vnode.genesis_dir_path}genesis.json`;
         break;
     }
 
@@ -43,7 +44,7 @@ module.exports = nodeName =>
         default:
           rej(
             new Error(
-              `vnode init Failed === name: ${nodeName}, exit code: ${code}`
+              `vnode init Failed for: ${datadirPath}, exit code: ${code}`
             )
           );
           break;

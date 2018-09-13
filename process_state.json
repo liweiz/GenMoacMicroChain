@@ -27,8 +27,6 @@
   },
   "vnode": {
     "start_vnode_via_process": true,
-
-    "name": "vnode_0",
     "min_disposable_balance_in_moac": 3,
 
     "chain_id": 101,

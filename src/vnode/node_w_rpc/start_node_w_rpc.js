@@ -3,15 +3,15 @@ const cpStdoToFile = require('../../util/child_process_stdo_to_file');
 
 /**
  * @typedef FuelOfRPCRunnable
- * @property {string} moacDirPath
- * @property {string} moacFileName
+ * @property {string} moacDirPath - containing dir's path
+ * @property {string} moacFileName - executable's file name
  * @property {string} chainId
  * @property {string} rpcApi
  * @property {boolean} mine
  */
 
 /**
- * Run node with RPC and mining
+ * Run node with RPC
  *
  * @param {string} nodeDirPath - dir path of vnode datadir
  * @param {string} rpcAddr - RPC address
@@ -30,9 +30,9 @@ module.exports = (nodeDirPath, rpcAddr, rpcPort, cfg) =>
       // case "win32":
       //   break;
       default:
-        osMoacDirPath = cfg.moacDirPath; // cfgObj.mac.moac_dir_path;
+        osMoacDirPath = cfg.moacDirPath;
         osNodeDirPath = nodeDirPath;
-        localMoacFileName = cfg.moacFileName; // cfgObj.mac.moac_file_name;
+        localMoacFileName = cfg.moacFileName;
         break;
     }
 
@@ -44,7 +44,7 @@ module.exports = (nodeDirPath, rpcAddr, rpcPort, cfg) =>
       '--verbosity',
       cfg.verbosity,
       '--rpcapi',
-      cfg.rpcApi, // cfgObj.rpc.api
+      cfg.rpcApi,
       '--rpcaddr',
       rpcAddr,
       '--rpcport',
@@ -52,11 +52,14 @@ module.exports = (nodeDirPath, rpcAddr, rpcPort, cfg) =>
     ];
 
     switch (cfg.chainId) {
-      case 101:
+      // testnet
+      case '101':
         argList.push('--testnet');
         break;
-      case 99:
+      // mainnet
+      case '99':
         break;
+      // private net
       default:
         argList.push('--networkid');
         argList.push(cfg.chainId);
@@ -64,7 +67,7 @@ module.exports = (nodeDirPath, rpcAddr, rpcPort, cfg) =>
 
     if (cfg.mine) {
       argList.push('--mine');
-      // this indicates a private chain node
+      // this indicates a private chain node, no connection need
       argList.push('--nodiscover');
     }
 
@@ -73,6 +76,7 @@ module.exports = (nodeDirPath, rpcAddr, rpcPort, cfg) =>
     cpStdoToFile().pipeToLogFile(spawned);
 
     spawned.on('error', err => {
+      console(`vnode with datadir "${osNodeDirPath} failed to run"`);
       throw err;
     });
 

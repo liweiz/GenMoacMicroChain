@@ -4,7 +4,7 @@ const sleep = require('../../util/sleep');
 const start = require('./start_node_w_rpc');
 
 /**
- * Run node with RPC and mining
+ * Run node with RPC
  *
  * @param {string} datadirPath - dir path of vnode datadir
  * @param {boolean} [mining=false] - to mine or not
@@ -13,9 +13,21 @@ const start = require('./start_node_w_rpc');
  */
 module.exports = async (datadirPath, mining = false, ms = 8000) => {
   const { vnode } = ctx.state;
+  let dirPathMoac;
+  let fileNameMoac;
+  switch (process.platform) {
+    case 'win32':
+      // TO DO
+
+      break;
+    default:
+      dirPathMoac = cfg.mac.moac_executable_to_run.dir_path;
+      fileNameMoac = cfg.mac.moac_executable_to_run.name;
+      break;
+  }
   const nodeRpc = await start(datadirPath, vnode.rpc.addr, vnode.rpc.port, {
-    moacDirPath: cfg.mac.moac_dir_path,
-    moacFileName: cfg.mac.moac_file_name,
+    moacDirPath: dirPathMoac,
+    moacFileName: fileNameMoac,
     chainId: `${vnode.chain_id}`,
     rpcApi: vnode.rpc.api,
     mine: mining,
