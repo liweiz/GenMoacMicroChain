@@ -32,7 +32,35 @@ Under root dir of the project folder:
 npm install
 ```
 
-### STEP 3. Set State:
+### STEP 3. Let It Know Where To Find Your Stuff
+
+Review and set ./config.json.
+macOS users only need to look at settings under "mac".
+
+    "moac_executable_to_run": to locate which moac executable to run
+
+        "name": the moac executable's file name
+        "dir_path": containing dir's path of the executable
+
+    "scsserver_executable_to_copy": to locate which scsserver executable to be copied into new folder in new scs node creation
+
+        "name": the scsserver executable's file name
+        "dir_path": containing dir's path of the executable
+
+    "vnode":
+
+        "genesis_dir_path": containing dir's path of the genesis.json for local private chain creation
+        "datadir": input for "--datadir", your vnode's dir path
+
+    "scs_nodes":
+
+        "dir_path": containing dir's path of all on-demand new scs nodes
+
+    "temp_dir_path": where temporary files go
+
+    "console_log_file_path": containing dir's path of the consolidated log file. Log files of moac and scsserver can still be found in their default location respectively.
+
+### STEP 4. Set State
 
 Review and set ./process_state.json.
 File details can be found in Configuration section below.
@@ -55,7 +83,7 @@ File details can be found in Configuration section below.
 
 - pick and set chain id in "chain_id" of ./process_state.json and "chainId" of ./genesis.json. They have to be same.
 
-### STEP 4. Start Process From CLI
+### STEP 5. Start Process From CLI
 
 Open your CLI tool and go to root dir of the project folder
 

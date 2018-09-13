@@ -54,10 +54,12 @@ module.exports = (nodeDirPath, rpcAddr, rpcPort, cfg) =>
     switch (cfg.chainId) {
       // testnet
       case '101':
+        console.log(`for testnet, use "--testnet"`);
         argList.push('--testnet');
         break;
       // mainnet
       case '99':
+        console.log(`for mainnet, no "--networkid" needed`);
         break;
       // private net
       default:
