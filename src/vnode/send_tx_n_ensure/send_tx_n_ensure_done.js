@@ -1,6 +1,6 @@
 const sleep = require('../../util/sleep');
 const ctx = require('../../context/process_ctx_proxy');
-const getNonce = require('../get_tx_nonce');
+// const getNonce = require('../get_tx_nonce');
 
 /**
  * Send given amount in Sha and do after transaction completed
@@ -21,8 +21,8 @@ module.exports = async (chain3, txKnowledge, doneChecker) => {
       chain3.personal.unlockAccount(txKnowledge.api.from, txKnowledge.passcode);
     }
 
-    const txNonce = await getNonce(chain3, txKnowledge.api.from);
-    txKnowledge.api.nonce = txNonce;
+    // const txNonce = await getNonce(chain3, txKnowledge.api.from);
+    // txKnowledge.api.nonce = txNonce;
 
     await sleep(ctx.state.interval_between_rpc_calls_ms);
     const txHash = await new Promise((res, rej) => {

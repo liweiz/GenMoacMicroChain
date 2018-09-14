@@ -14,8 +14,9 @@ module.exports = async (chain3, addr) => {
   console.log(
     `chain3.mc.pendingTransactions: ${chain3.mc.pendingTransactions}`
   );
+  console.log(`nonceNow: ${nonceNow}`);
   const pendingNum = chain3.mc.pendingTransactions
     ? chain3.mc.pendingTransactions.length
     : 0;
-  return nonceNow + pendingNum + 1;
+  return nonceNow + pendingNum;
 };
