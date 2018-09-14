@@ -3,7 +3,7 @@ const sleep = require('../../util/sleep');
 
 const syncToReachLatestBlk = async ctx => {
   await sleep(ctx.state.interval_between_rpc_calls_ms);
-  if (ctx.vnode.chain3.mc.isSyncing !== false) {
+  if (ctx.vnode.chain3.mc.syncing !== false) {
     await sleep(ctx.state.interval_between_rpc_calls_ms);
     await new Promise((res, rej) => {
       ctx.vnode.chain3.mc.isSyncing((err, sync) => {
