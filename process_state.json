@@ -58,7 +58,7 @@
   "subChain_protocol_base": {
     "sol_path": "./sol/nuwa1.0.2/DeploySubChainBase.sol",
     "contract_name": ":SubChainProtocolBase",
-    "name": "name_you_picked_0",
+    "name": "anyname",
     "min_bond": 1,
     "protocol_type": 0,
     "addr": "",
@@ -70,10 +70,10 @@
   "subChain_base": {
     "sol_path": "./sol/nuwa1.0.2/DeploySubChainBase.sol",
     "contract_name": ":SubChainBase",
-    "min_num_nodes": 2,
+    "min_num_nodes": 3,
     "max_num_nodes": 10,
-    "thousandth": 1,
-    "flush_round": 20,
+    "thousandth": 1000,
+    "flush_round": 100,
     "addr": "",
     "min_op_balance_in_moac": 10,
     "min_registration_fee_in_moac": 1,

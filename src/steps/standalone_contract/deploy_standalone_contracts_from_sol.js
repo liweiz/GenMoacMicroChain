@@ -1,4 +1,4 @@
-const sequentPromises = require('../../util/sequently_run_promises');
+// const sequentPromises = require('../../util/sequently_run_promises');
 const deployContract = require('../../vnode/deploy_contract/deploy_sol_contract');
 const logger = require('../../util/logger');
 
@@ -29,23 +29,42 @@ const deployContracts = async (
   inputs
 ) => {
   try {
-    return sequentPromises(
-      inputs.map(
-        // sol: SolInput
-        (input, i) => {
-          logger.info(`deploying #${i} contract`);
-          return deployContract(
-            chain3,
-            gasBudget,
-            gasPrice,
-            input.path,
-            input.name,
-            sendingAddr,
-            input.params
-          );
-        }
-      )
-    );
+    const contracts = [];
+
+    for (let i = 0; i < inputs.length; i += 1) {
+      logger.info(`deploying #${i} contract`);
+      const input = inputs[i];
+      const contract = await deployContract(
+        chain3,
+        gasBudget,
+        gasPrice,
+        input.path,
+        input.name,
+        sendingAddr,
+        input.params
+      );
+      contracts.push(contract);
+    }
+
+    return contracts;
+
+    // return sequentPromises(
+    //   inputs.map(
+    //     // sol: SolInput
+    //     (input, i) => {
+    //       logger.info(`deploying #${i} contract`);
+    //       return deployContract(
+    //         chain3,
+    //         gasBudget,
+    //         gasPrice,
+    //         input.path,
+    //         input.name,
+    //         sendingAddr,
+    //         input.params
+    //       );
+    //     }
+    //   )
+    // );
   } catch (e) {
     logger.info(`some standalone smart contract deployment failed`);
     throw e;

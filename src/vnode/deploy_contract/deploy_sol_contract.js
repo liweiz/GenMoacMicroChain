@@ -56,8 +56,8 @@ module.exports = async (
     const txObj = {
       data: `0x${bytecode}`,
       from: fromAddress,
-      gas: gasBudget,
-      gasPrice
+      gas: gasBudget
+      // gasPrice
     };
 
     // txObj.nonce = nonce;

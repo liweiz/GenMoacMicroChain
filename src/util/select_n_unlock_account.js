@@ -35,8 +35,7 @@ const accountSelection = async chain3 => {
         {
           name: 'select_sending_account',
           type: 'list',
-          message:
-            'Please select the account for purpose of sending all trasactions.',
+          message: 'Please select the account for sending all trasactions.',
           choices: toDisplay
         }
       ]);
@@ -69,7 +68,7 @@ const accountSelection = async chain3 => {
         {
           name: 'unlock_sending_account',
           type: 'password',
-          message: `Please unlock account ${sendingAccount} for 30 minutes.`
+          message: `Please input your password here to unlock account ${sendingAccount} for 30 minutes.`
         }
       ]);
       await sleep(ctx.state.interval_between_rpc_calls_ms);

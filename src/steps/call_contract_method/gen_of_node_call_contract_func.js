@@ -66,8 +66,8 @@ const genOfNode = (funcNameInContract, contractName, amountInMoac, ...params) =>
           from: sendingAddr,
           to: contractInstance.address,
           value: amountInSha,
-          gas: ctx.state.gas.lv[ctx.state.gas.usage.contract_func_call],
-          gasPrice: ctx.vnode.gas_price_to_use
+          gas: ctx.state.gas.lv[ctx.state.gas.usage.contract_func_call]
+          // gasPrice: ctx.vnode.gas_price_to_use
         }
       };
       let txReceipt;
