@@ -1,5 +1,6 @@
 const ensureReady = require('./ensure_node_w_rpc_ready');
 const cfg = require('.././../../config.json');
+const ctx = require('../../context/process_ctx_proxy');
 
 /**
  * launch vnode with RPC in preset datadir in ./config.json
@@ -13,7 +14,24 @@ module.exports = async (mining = false) => {
       // TO DO
       break;
     default:
-      aDatadir = cfg.mac.vnode.datadir;
+      switch (ctx.state.vnode.datadir_setting) {
+        case 'mainnet':
+          aDatadir = cfg.mac.vnode.datadir.default_mainnet;
+          break;
+        case 'testnet':
+          aDatadir = cfg.mac.vnode.datadir.default_testnet;
+          break;
+        case 'user_supplied':
+          aDatadir = cfg.mac.vnode.datadir.user_supplied;
+          break;
+        default:
+          throw Error(
+            `"vnode.datadir_setting" in state_process.json has to be "mainnet"/"testnet"/"user_supplied", "${
+              ctx.state.vnode.datadir_setting
+            }" is not defined`
+          );
+      }
+
       break;
   }
   return ensureReady(aDatadir, mining);

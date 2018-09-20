@@ -16,6 +16,13 @@ const accountSelection = async chain3 => {
       });
     });
     // balancesInMoac: number[]
+    if (accounts.length > 0) {
+      console.log(`checking each account balance on vnode, please be patient`);
+    } else {
+      throw Error(
+        `there is no account on the vnode, please create one with enough fund and restart the process`
+      );
+    }
     const balancesInMoac = [];
     for (let i = 0; i < accounts.length; i += 1) {
       const account = accounts[i];

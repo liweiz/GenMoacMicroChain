@@ -1,5 +1,6 @@
 {
   "private_n_local_run": false,
+  "blk_num_scs_changed_to_enabled": 101,
   "auto_state_save": true,
 
   "gas_price_gsha": {
@@ -27,6 +28,7 @@
   },
   "vnode": {
     "start_vnode_via_process": true,
+    "datadir_setting": "testnet",
     "min_disposable_balance_in_moac": 3,
 
     "chain_id": 101,

@@ -10,6 +10,7 @@ const nodeDeployedContracts = require('../deployed_contracts/node_deployed_contr
 const nodeScsFunded = require('../ensure_scsids_funded/node_ensure_scsids_funded');
 const nodeScsPool = require('../scs_node_pool/node_scs_node_pool');
 const nodeLiveChain = require('../live_micro_chain/node_live_microChain');
+const waitForScsConnEnabled = require('../../steps/wait_till_blk_num_enable_scs/node_wait_till_blk_num_enable_scs');
 
 const genRawNode = require('../../util/operation_tree/operation_tree_node');
 
@@ -26,6 +27,7 @@ const nodeRoot = rawNode => {
     rawNode.kids.push(nodeCost(genRawNode(rawNode)));
     if (ctx.state.private_n_local_run) {
       rawNode.kids.push(waitForMiningTillBalance(genRawNode(rawNode)));
+      rawNode.kids.push(waitForScsConnEnabled(genRawNode(rawNode)));
       // private chain node unlock w/ default password
       rawNode.kids.push(nodeUnlockAddrWDefault(genRawNode(rawNode)));
     } else {

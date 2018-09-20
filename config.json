@@ -10,7 +10,11 @@
     },
     "vnode": {
       "genesis_dir_path": "./",
-      "datadir": "./temp/vnode_0"
+      "datadir": {
+        "user_supplied": "./temp/vnode_0",
+        "default_mainnet": "/Library/MoacNode",
+        "default_testnet": "/Library/MoacNode/testnet"
+      }
     },
     "scs_nodes": {
       "dir_path": "./temp/scs_nodes/"

@@ -20,7 +20,7 @@ module.exports = () =>
         moacPath =
           cfg.mac.moac_executable_to_run.dir_path +
           cfg.mac.moac_executable_to_run.name;
-        datadirPath = cfg.mac.vnode.datadir;
+        datadirPath = cfg.mac.vnode.datadir.user_supplied;
         genesisPath = `${cfg.mac.vnode.genesis_dir_path}genesis.json`;
         break;
     }
