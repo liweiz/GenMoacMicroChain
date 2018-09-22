@@ -54,9 +54,9 @@ For testnet:
 moac --testnet --rpc --rpcaddr 127.0.0.1 --rpcport 20001 --rpcapi "db,eth,net,web3,personal,chain3,admin,mc" --verbosity 4
 ```
 
-If you do not have existing scs node pool available to you, please find "self_built_scs_node_pool" folder.
+If you do not have existing scs node pool available to you and want to create local scs nodes on your machine to form a new scs node pool, please find "self_built_scs_node_pool" folder.
 
-If you want to create local scs nodes on your machine to form a new scs node pool, please find "public_scs_node_pool" folder.
+If you want to use existing scs node pool, please find "public_scs_node_pool" folder.
 
 ### step three
 
