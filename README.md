@@ -4,114 +4,115 @@
 
 macOS
 
-## Configure
-
-Configuration is done through process_state.json under root dir.
-
-User is recommended to figure out what phase/state of the microChain generation one starts out with to properly configure to have the process run successfully. E.g., after insufficient account balance happened, one finished funding enough moac and try to run the process from somewhere in the middle.
-
-The current project status is still alpha and only covers very basic features. Please let us know, if anything does not work as expected.
-
 ## DO NOT USE THIS ON MOAC MAINNET, YET
 
 We are not responsible for any consequence, if anyone use it on MOAC mainnet.
 
-# Quick Start
+# Jump In
 
-### STEP 1. Get The Repo
+## Get The Repo
 
 Take the repo to your local machine.
 
-### STEP 2. Install Dependencies
+## Install Dependencies
 
 Please make sure you have all dependencies installed before proceeding:
 
-Under root dir of the project folder:
+Open Terminal and get into root dir of the project folder, copy and paste below command and press Enter:
 
 ```cli
 npm install
 ```
 
-### STEP 3. Let It Know Where To Find Your Stuff
+## Decide What You Want
 
-Review and set ./config.json.
-macOS users only need to look at settings under "mac".
+The process supports forming new micro-chain on:
 
-    "moac_executable_to_run": to locate which moac executable to run
+- local private net
 
-        "name": the moac executable's file name
-        "dir_path": containing dir's path of the executable
+- public net
 
-    "scsserver_executable_to_copy": to locate which scsserver executable to be copied into new folder in new scs node creation
+## Let's Go
 
-        "name": the scsserver executable's file name
-        "dir_path": containing dir's path of the executable
+### step one
 
-    "vnode":
+Find "preset_states" folder under project root folder.
 
-        "genesis_dir_path": containing dir's path of the genesis.json for local private chain creation
-        "datadir": input for "--datadir", your vnode's dir path
+### step two
 
-    "scs_nodes":
+In "preset_states" folder:
 
-        "dir_path": containing dir's path of all on-demand new scs nodes
+If you want everything running on your machine, the process is able to create a local private chain from scratch, create new local scs nodes as required and form a new micro-chain. To do this, please find "local_private" folder.
 
-    "temp_dir_path": where temporary files go
+If you want to play on public net:
 
-    "console_log_file_path": containing dir's path of the consolidated log file. Log files of moac and scsserver can still be found in their default location respectively.
+Before proceeding, please make sure your vnode is started via below command in Terminal:
 
-### STEP 4. Set State
+For testnet:
 
-Review and set ./process_state.json.
-File details can be found in Configuration section below.
+```cli
+moac --testnet --rpc --rpcaddr 127.0.0.1 --rpcport 20001 --rpcapi "db,eth,net,web3,personal,chain3,admin,mc" --verbosity 4
+```
 
-#### existing vnode on testnet
+If you do not have existing scs node pool available to you, please find "self_built_scs_node_pool" folder.
 
-- "private_n_local_run" set to false
+If you want to create local scs nodes on your machine to form a new scs node pool, please find "public_scs_node_pool" folder.
 
-- "chain_id" set to 101
+### step three
 
-- set "start_vnode_via_process" & "ignore_sync" according to your need
+In the folder you select, copy and paste "process_state.json" to project root folder. This will replace the original file with the same name under root folder. Don't worry about it.
 
-- get and set "addr" for deployed contracts or new ones will be deployed in the process
+### step four
 
-#### new local private chain
-
-- "private_n_local_run" set to true
-
-- "start_vnode_via_process" set to true
-
-- pick and set chain id in "chain_id" of ./process_state.json and "chainId" of ./genesis.json. They have to be same.
-
-### STEP 5. Start Process From CLI
-
-Open your CLI tool and go to root dir of the project folder
+Open Terminal and get into root dir of the project folder, copy and paste below command and press Enter:
 
 ```cli
 node ./src/micro_chain_gen
 ```
 
-User can also run above cmd after modifying the process_state.json file to reflect the current state of process:
+You are all set.
 
-- when there is any interruption in the process and user manually sets process state meets requirements to proceed again
+To find log files, please read "Log Files" section below.
 
-- when some resources for the process are available piror to the start of the process such as known scsids
+## Waiting Time In Process
+
+Some steps in the process might take 5-10 mins to complete. If it takes too long, you might want to stop and restart the process.
+
+# Learn More
+
+## Project Status
+
+The current project status is still alpha and only covers very basic features. Please let us know, if anything does not work as expected.
 
 ## Log Files
 
 ### moac
 
+This is you the log for vnode.
+
+If you use the moac executible in the project folder:
+
 project_root/\_logs/moac.log
 
+Otherwise, you can find the "\_logs" folder in your moac default datadir.
+
 ### scs
+
+This is the default location for a local scs node's log file.
 
 project_root/temp/scs_nodes/any_scs_node_name/bin/logs
 
 ### other
 
+This is the default location for mixed output of the process.
+
 project_root/console.log
 
-## Configuration
+## Configure State
+
+Configuration is done through process_state.json under root dir.
+
+Advanced user is recommended to figure out what phase/state of the microChain generation one starts out with to properly configure to have the process run successfully. E.g., after insufficient account balance happened, one finished funding enough moac and try to run the process from somewhere in the middle.
 
 ### Chain
 
@@ -273,8 +274,30 @@ project_root/console.log
 
     true, if registerClose call successful
 
-# Notes
+## Customize File & Folder Settings
 
-## sync waiting time
+Review and set ./config.json.
+macOS users only need to look at settings under "mac".
 
-It might take up to 20+ mins to start to sync. If it takes too long, you might want to stop and restart the process.
+    "moac_executable_to_run": to locate which moac executable to run
+
+        "name": the moac executable's file name
+        "dir_path": containing dir's path of the executable
+
+    "scsserver_executable_to_copy": to locate which scsserver executable to be copied into new folder in new scs node creation
+
+        "name": the scsserver executable's file name
+        "dir_path": containing dir's path of the executable
+
+    "vnode":
+
+        "genesis_dir_path": containing dir's path of the genesis.json for local private chain creation
+        "datadir": input for "--datadir", your vnode's dir path
+
+    "scs_nodes":
+
+        "dir_path": containing dir's path of all on-demand new scs nodes
+
+    "temp_dir_path": where temporary files go
+
+    "console_log_file_path": containing dir's path of the consolidated log file. Log files of moac and scsserver can still be found in their default location respectively.

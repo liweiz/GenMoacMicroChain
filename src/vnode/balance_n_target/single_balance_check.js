@@ -21,7 +21,12 @@ module.exports = async (chain3, addr, targetInSha) => {
       10 ** 18}`
   );
   if (balanceInSha < targetInSha) {
-    logger.info(`insufficient fund at address, ${addr}`);
+    logger.info(
+      `Insufficient fund at address, ${addr}, current balance is ${balanceInSha /
+        10 **
+          18} moac. Please make sure the account balance is not less than ${targetInSha /
+        10 ** 18} moac and restart the process after it is satisfied.`
+    );
     process.exit();
   }
   logger.info(`enough fund at address, ${addr}`);
