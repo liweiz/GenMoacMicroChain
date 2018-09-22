@@ -88,7 +88,7 @@ The current project status is still alpha and only covers very basic features. P
 
 ### moac
 
-This is you the log for vnode.
+This is the log for your vnode.
 
 If you use the moac executible in the project folder:
 
