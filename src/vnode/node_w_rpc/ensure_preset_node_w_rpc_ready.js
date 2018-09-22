@@ -16,10 +16,10 @@ module.exports = async (mining = false) => {
     default:
       switch (ctx.state.vnode.datadir_setting) {
         case 'mainnet':
-          aDatadir = cfg.mac.vnode.datadir.default_mainnet;
+          aDatadir = process.env.HOME + cfg.mac.vnode.datadir.default_mainnet;
           break;
         case 'testnet':
-          aDatadir = cfg.mac.vnode.datadir.default_testnet;
+          aDatadir = process.env.HOME + cfg.mac.vnode.datadir.default_testnet;
           break;
         case 'user_supplied':
           aDatadir = cfg.mac.vnode.datadir.user_supplied;
@@ -34,5 +34,6 @@ module.exports = async (mining = false) => {
 
       break;
   }
+  console.log(`vnode datadir: ${aDatadir}`);
   return ensureReady(aDatadir, mining);
 };

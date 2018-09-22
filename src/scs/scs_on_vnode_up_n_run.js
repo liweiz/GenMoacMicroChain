@@ -30,13 +30,15 @@ switch (process.platform) {
  *
  * @param {string} scsNodeName - name of the scs node
  * @param {string} address - account address of beneficiary
+ * @param {boolean} isMonitor - true, if the scs node is used as a monitor
  * @returns {Promise<string>}
  */
-module.exports = async (scsNodeName, address) => {
+module.exports = async (scsNodeName, address, isMonitor = false) => {
   // generate userconfig.json
   // 1. create dir for a specific scs and its config respectively
   const nodeDirPath = scsNodesDirPath + scsNodeName + path.sep;
   const nodeBinDirPath = `${nodeDirPath}bin${path.sep}`;
+  const nodeLogDirPath = `${nodeBinDirPath}_logs${path.sep}`;
   const userconfigDirPath = `${nodeDirPath}config${path.sep}`;
   const scsKeystorePart = `${path.sep}scsserver${path.sep}scskeystore${
     path.sep
@@ -54,13 +56,29 @@ module.exports = async (scsNodeName, address) => {
 
   return new Promise((res, rej) => {
     catchScsids(keystoreDirPath).then(ssids => {
+      console.log(
+        `new local scs node created at "${path.resolve(nodeDirPath)}"`
+      );
+      console.log(
+        `log file for new local scs node is at "${path.resolve(
+          nodeLogDirPath
+        )}"`
+      );
       res(ssids[0]);
     });
 
     // 3. has to get into the node's bin dir and run
-    const spawned = cp.spawn(currentDirRelativeForm + scsserverFileName, [], {
-      cwd: nodeBinDirPath
-    });
+    const argList = isMonitor
+      ? ['--rpcaddr', '0.0.0.0', '--rpcport', '23453']
+      : [];
+
+    const spawned = cp.spawn(
+      currentDirRelativeForm + scsserverFileName,
+      argList,
+      {
+        cwd: nodeBinDirPath
+      }
+    );
     cpStdoToFile().pipeToLogFile(spawned);
     spawned.on('exit', () => {
       // TO DO

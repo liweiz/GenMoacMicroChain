@@ -18,9 +18,9 @@ const waitPastFrozen = async (
           blk => blk.number,
           blkNumber => {
             logger.info(
-              `blkNumber, ${blkNumber}, expected, ${Number(scsListElem[3])}`
+              `block num #${blkNumber}, expected #${Number(scsListElem[3])}`
             );
-            return blkNumber > Number(scsListElem[3]);
+            return blkNumber >= Number(scsListElem[3]);
           }
         );
       } else {

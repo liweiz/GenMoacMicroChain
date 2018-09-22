@@ -7,12 +7,16 @@ const totalScsids = require('../../steps/num_scs_nodes/node_num_of_scs_nodes');
 const totalCostInSha = require('../../steps/estimated_proccess_total_cost_in_sha/node_estimated_process_total_cost_in_sha');
 
 const nodeTotalCost = rawNode => {
-  rawNode.genKids = () => {
-    rawNode.kids.push(totalScsids(genRawNode(rawNode)));
+  rawNode.genKids = ctx => {
+    if (ctx.state.subChain_protocol_base.addr === '') {
+      rawNode.kids.push(totalScsids(genRawNode(rawNode)));
+    }
     rawNode.kids.push(sysGasPrice(genRawNode(rawNode)));
     rawNode.kids.push(finalGasPrice(genRawNode(rawNode)));
     rawNode.kids.push(nodeNewContractRequests(genRawNode(rawNode)));
-    rawNode.kids.push(nodeExistingScsidsToFund(genRawNode(rawNode)));
+    if (ctx.state.subChain_protocol_base.addr === '') {
+      rawNode.kids.push(nodeExistingScsidsToFund(genRawNode(rawNode)));
+    }
     rawNode.kids.push(totalCostInSha(genRawNode(rawNode)));
   };
 

@@ -44,6 +44,9 @@ const genOfNode = (
             case 'registerClose':
               contractInstance = ctx.subChain_base.instance;
               break;
+            case 'registerAsMonitor':
+              contractInstance = ctx.subChain_base.instance;
+              break;
             default:
               throw Error(
                 `method name "${funcNameInContract}" on contract "${contractName}" is not among existing ones`
@@ -241,6 +244,11 @@ const genOfNode = (
                   break;
                 case 'registerClose':
                   ctx.state.subChain_base.successful_func_call.registerClose.push(
+                    result
+                  );
+                  break;
+                case 'registerAsMonitor':
+                  ctx.state.subChain_base.successful_func_call.registerAsMonitor.push(
                     result
                   );
                   break;

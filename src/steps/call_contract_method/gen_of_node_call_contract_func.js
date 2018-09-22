@@ -38,6 +38,9 @@ const genOfNode = (funcNameInContract, contractName, amountInMoac, ...params) =>
             case 'registerClose':
               contractInstance = ctx.subChain_base.instance;
               break;
+            case 'registerAsMonitor':
+              contractInstance = ctx.subChain_base.instance;
+              break;
             default:
               throw Error(
                 `method name "${funcNameInContract}" on contract "${contractName}" is not among existing ones`
@@ -71,6 +74,12 @@ const genOfNode = (funcNameInContract, contractName, amountInMoac, ...params) =>
         }
       };
       let txReceipt;
+      if (
+        funcNameInContract === 'registerAsMonitor' &&
+        contractName === ctx.state.subChain_base.contract_name
+      ) {
+        params = [ctx.state.scs_nodes.monitor];
+      }
       try {
         switch (params.length) {
           case 0:
@@ -222,6 +231,9 @@ const genOfNode = (funcNameInContract, contractName, amountInMoac, ...params) =>
                 break;
               case 'registerClose':
                 ctx.state.subChain_base.successful_func_call.registerClose = funcCallOk;
+                break;
+              case 'registerAsMonitor':
+                ctx.state.subChain_base.successful_func_call.registerAsMonitor = funcCallOk;
                 break;
               default:
                 throw Error(

@@ -35,6 +35,7 @@ module.exports = {
   },
   subChain_base: {
     create_new: 0,
-    instance: null
+    instance: null,
+    blk_no_register_open: 0
   }
 };

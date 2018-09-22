@@ -46,7 +46,8 @@
   "scs_nodes": {
     "scsids": [],
     "min_disposable_balance_in_moac": 2,
-    "beneficiary": ""
+    "beneficiary": "",
+    "monitor": ""
   },
 
   "vnode_protocol_base": {
@@ -76,13 +77,18 @@
     "max_num_nodes": 10,
     "thousandth": 1000,
     "flush_round": 100,
+    "num_of_blk_to_wait_for": {
+      "min_nodes": 20,
+      "max_nodes_after_min_met": 8
+    },
     "addr": "",
     "min_op_balance_in_moac": 10,
     "min_registration_fee_in_moac": 1,
     "successful_func_call": {
       "addFund": false,
       "registerOpen": false,
-      "registerClose": false
+      "registerClose": false,
+      "registerAsMonitor": false
     }
   }
 }
