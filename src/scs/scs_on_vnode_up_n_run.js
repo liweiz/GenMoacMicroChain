@@ -40,9 +40,7 @@ module.exports = async (scsNodeName, address, isMonitor = false) => {
   const nodeBinDirPath = `${nodeDirPath}bin${path.sep}`;
   const nodeLogDirPath = `${nodeBinDirPath}_logs${path.sep}`;
   const userconfigDirPath = `${nodeDirPath}config${path.sep}`;
-  const scsKeystorePart = `${path.sep}scsserver${path.sep}scskeystore${
-    path.sep
-  }`;
+  const scsKeystorePart = `${path.sep}bin${path.sep}scskeystore${path.sep}`;
   ensureDirsOnPath(nodeBinDirPath);
   ensureDirsOnPath(userconfigDirPath);
   await genUserconfig(address, `${userconfigDirPath}userconfig.json`);
@@ -51,26 +49,38 @@ module.exports = async (scsNodeName, address, isMonitor = false) => {
     scsserverDirPath + scsserverFileName,
     nodeBinDirPath + scsserverFileName
   );
+  fs.copyFileSync(
+    `${userconfigDirPath}userconfig.json`,
+    `${nodeBinDirPath}userconfig.json`
+  );
 
   const keystoreDirPath = scsNodesDirPath + scsNodeName + scsKeystorePart;
 
   return new Promise((res, rej) => {
     catchScsids(keystoreDirPath).then(ssids => {
       console.log(
-        `new local scs node created at "${path.resolve(nodeDirPath)}"`
+        `new local scs node created at '${path.resolve(nodeDirPath)}'`
       );
       console.log(
-        `log file for new local scs node is at "${path.resolve(
+        `log file for new local scs node is at '${path.resolve(
           nodeLogDirPath
-        )}"`
+        )}'`
       );
       res(ssids[0]);
     });
 
     // 3. has to get into the node's bin dir and run
     const argList = isMonitor
-      ? ['--rpcaddr', '0.0.0.0', '--rpcport', '23453']
-      : [];
+      ? [
+        '--rpc',
+        '--rpcaddr',
+        '0.0.0.0',
+        '--rpcport',
+        '23453',
+        '--psd',
+        'moacscsofflineaccountpwd'
+      ]
+      : ['--psd', 'moacscsofflineaccountpwd'];
 
     const spawned = cp.spawn(
       currentDirRelativeForm + scsserverFileName,
