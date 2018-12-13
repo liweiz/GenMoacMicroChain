@@ -13,7 +13,7 @@ const newScsNode = async ctx => {
   }
   try {
     logger.info(`creating scs monitor node`);
-    const scsid = await upNRunScsNode(`scs_monitor`, bene);
+    const scsid = await upNRunScsNode(`scs_monitor`, bene, true);
     logger.info(`scsid caught, scs_monitor, ${scsid}`);
     logger.info(`scs monitor node created`);
     logger.info(

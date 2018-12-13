@@ -76,11 +76,9 @@ module.exports = async (scsNodeName, address, isMonitor = false) => {
         '--rpcaddr',
         '0.0.0.0',
         '--rpcport',
-        '23453',
-        '--psd',
-        'moacscsofflineaccountpwd'
+        '23456'
       ]
-      : ['--psd', 'moacscsofflineaccountpwd'];
+      : [];
 
     const spawned = cp.spawn(
       currentDirRelativeForm + scsserverFileName,
