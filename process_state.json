@@ -1,5 +1,5 @@
 {
-  "private_n_local_run": false,
+  "private_n_local_run": true,
   "blk_num_scs_changed_to_enabled": 101,
   "auto_state_save": true,
 
@@ -28,18 +28,18 @@
   },
   "vnode": {
     "start_vnode_via_process": true,
-    "datadir_setting": "testnet",
+    "datadir_setting": "user_supplied",
     "min_disposable_balance_in_moac": 3,
 
-    "chain_id": 101,
+    "chain_id": 237,
     "log_verbosity": 4,
     "service_endpoint": "127.0.0.1:50062",
 
-    "ignore_sync": false,
+    "ignore_sync": true,
     "rpc": {
       "addr": "127.0.0.1",
       "port": 20001,
-      "api": "db,eth,net,web3,personal,chain3,admin,mc"
+      "api": "db,eth,net,web3,personal,chain3,admin,mc,vnode,scs"
     }
   },
 
@@ -51,15 +51,15 @@
   },
 
   "vnode_protocol_base": {
-    "sol_path": "./sol/pangu0.8.4/VnodeProtocolBase.sol",
+    "sol_path": "./sol/nuwa1.0.6/VnodeProtocolBase.sol",
     "contract_name": ":VnodeProtocolBase",
     "name": ":VnodeProtocolBase",
     "min_bond": 1,
-    "addr": "0x5B43583F33214c790B8206D9B06685c49A1DB455"
+    "addr": ""
   },
 
   "subChain_protocol_base": {
-    "sol_path": "./sol/nuwa1.0.2/DeploySubChainBase.sol",
+    "sol_path": "./sol/nuwa1.0.7/SubChainProtocolBase.sol",
     "contract_name": ":SubChainProtocolBase",
     "name": "anyname",
     "min_bond": 1,
@@ -71,7 +71,7 @@
   },
 
   "subChain_base": {
-    "sol_path": "./sol/nuwa1.0.2/DeploySubChainBase.sol",
+    "sol_path": "./sol/nuwa1.0.7/SubChainProtocolBase.sol",
     "contract_name": ":SubChainBase",
     "min_num_nodes": 3,
     "max_num_nodes": 10,
