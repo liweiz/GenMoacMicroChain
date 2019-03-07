@@ -338,7 +338,6 @@ contract SubChainProtocolBase {
  * Requires : SubChainProtocolBase.sol
  * Required by: none
  */
-import "./SubChainProtocolBase.sol";
 
 
 contract SCSRelay {

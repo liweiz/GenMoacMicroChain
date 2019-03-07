@@ -8,6 +8,7 @@ const nodeUnlockAddrWDefault = require('../../steps/unlock_sending_addr_w_defaul
 const nodeNewScs = require('../new_scs_nodes/node_new_scs_nodes');
 const nodeNewScsMonitor = require('../new_scs_monitor_node/node_new_scs_monitor_node');
 const nodeDeployedContracts = require('../deployed_contracts/node_deployed_contracts');
+const nodeVnodeRegistration = require('../vnode_registration/node_vnode_registration');
 const nodeScsFunded = require('../ensure_scsids_funded/node_ensure_scsids_funded');
 const nodeScsPool = require('../scs_node_pool/node_scs_node_pool');
 const nodeLiveChain = require('../live_micro_chain/node_live_microChain');
@@ -41,6 +42,9 @@ const nodeRoot = rawNode => {
       rawNode.kids.push(nodeNewScs(genRawNode(rawNode)));
     }
     rawNode.kids.push(nodeDeployedContracts(genRawNode(rawNode)));
+    if (ctx.state.vnode_protocol_base.addr === '') {
+      rawNode.kids.push(nodeVnodeRegistration(genRawNode(rawNode)));
+    }
     if (ctx.state.subChain_protocol_base.addr === '') {
       rawNode.kids.push(nodeScsFunded(genRawNode(rawNode)));
       rawNode.kids.push(nodeScsPool(genRawNode(rawNode)));

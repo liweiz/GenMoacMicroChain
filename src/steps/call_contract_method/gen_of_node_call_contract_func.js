@@ -58,6 +58,17 @@ const genOfNode = (funcNameInContract, contractName, amountInMoac, ...params) =>
               );
           }
           break;
+        case ctx.state.vnode_protocol_base.contract_name:
+          switch (funcNameInContract) {
+            case 'register':
+              contractInstance = ctx.vnode_protocol_base.instance;
+              break;
+            default:
+              throw Error(
+                `method name "${funcNameInContract}" on contract "${contractName}" is not among existing ones`
+              );
+          }
+          break;
         default:
           throw Error(
             `contract name "${contractName}" is not among existing ones`
@@ -79,6 +90,12 @@ const genOfNode = (funcNameInContract, contractName, amountInMoac, ...params) =>
         contractName === ctx.state.subChain_base.contract_name
       ) {
         params = [ctx.state.scs_nodes.monitor];
+      }
+      if (
+        funcNameInContract === 'register' &&
+        contractName === ctx.state.vnode_protocol_base.contract_name
+      ) {
+        params = [ctx.scs_nodes.need_funding, ];
       }
       try {
         switch (params.length) {
@@ -208,6 +225,19 @@ const genOfNode = (funcNameInContract, contractName, amountInMoac, ...params) =>
         }
         const funcCallOk = txReceipt.status === '0x1';
         switch (contractName) {
+          case ':VnodeProtocolBase':
+            switch (funcNameInContract) {
+              case 'register':
+                ctx.state.vnode_protocol_base.successful_func_call.register = funcCallOk;
+                break;
+              default:
+                throw Error(
+                  `func name "${funcNameInContract}" of contract "${contractName}" at address "${
+                    contractInstance.address
+                  }" not among supported list`
+                );
+            }
+            break;
           case ':SubChainProtocolBase':
             switch (funcNameInContract) {
               case 'register':

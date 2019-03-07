@@ -34,6 +34,7 @@
     "chain_id": 101,
     "log_verbosity": 4,
     "service_endpoint": "127.0.0.1:50062",
+    "vnode_beneficial_addr": "0xf0e014cbf1185709fd0a0f8e5e8b13d6610efab9",
 
     "ignore_sync": false,
     "rpc": {
