@@ -25,6 +25,10 @@ module.exports = {
     num_of_new: 0,
     need_funding: []
   },
+  test_coin: {
+    create_new: 0,
+    instance: null
+  },
   vnode_protocol_base: {
     create_new: 0,
     instance: null

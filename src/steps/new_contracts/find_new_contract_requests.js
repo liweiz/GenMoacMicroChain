@@ -5,6 +5,8 @@
  */
 const findNewContracts = ctx => {
   const { state } = ctx;
+  ctx.test_coin.create_new =
+    state.test_coin.addr !== '' ? 0 : 1;
   ctx.vnode_protocol_base.create_new =
     state.vnode_protocol_base.addr !== '' ? 0 : 1;
   ctx.subChain_protocol_base.create_new =

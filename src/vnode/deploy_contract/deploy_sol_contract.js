@@ -114,6 +114,33 @@ module.exports = async (
           aCallback
         );
         break;
+      case 7:
+        contractOfX.new(
+          paramList[0],
+          paramList[1],
+          paramList[2],
+          paramList[3],
+          paramList[4],
+          paramList[5],
+          paramList[6],
+          txObj,
+          aCallback
+        );
+        break;
+      case 8:
+        contractOfX.new(
+          paramList[0],
+          paramList[1],
+          paramList[2],
+          paramList[3],
+          paramList[4],
+          paramList[5],
+          paramList[6],
+          paramList[7],
+          txObj,
+          aCallback
+        );
+        break;
       default:
         throw new Error(
           `only supporting up to 6 params, too many params in new contract initialization, paramList.length, ${

@@ -39,6 +39,11 @@ const sideWork = async ctx => {
           );
       }
       console.log(
+        `ctx.state.test_coin.addr: ${
+          ctx.state.test_coin.addr
+        }`
+      );
+      console.log(
         `ctx.state.vnode_protocol_base.addr: ${
           ctx.state.vnode_protocol_base.addr
         }`

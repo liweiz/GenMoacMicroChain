@@ -1,1 +1,109 @@
-{"private_n_local_run":false,"blk_num_scs_changed_to_enabled":101,"auto_state_save":true,"gas_price_gsha":{"min":5,"max":600},"step_pause_enabled":false,"check_interval_ms":2000,"interval_between_rpc_calls_ms":4000,"default_password":"1111","gas":{"lv":{"max":9000000,"mid":5000000,"min":2000000},"usage":{"send_value":"min","contract_deployment":"max","contract_func_call":"mid"}},"vnode":{"start_vnode_via_process":false,"datadir_setting":"testnet","min_disposable_balance_in_moac":3,"chain_id":101,"log_verbosity":4,"service_endpoint":"127.0.0.1:50062","vnode_beneficial_addr":"0xf0e014cbf1185709fd0a0f8e5e8b13d6610efab9","ignore_sync":false,"rpc":{"addr":"127.0.0.1","port":8545,"api":"db,eth,net,web3,personal,chain3,admin,mc"}},"scs_nodes":{"scsids":["0x77d6c300bea1fa6d31983d360dde7f4c4155488f","0x3c9c3cafd7e050ced67170da13226b5628dbd5a2","0x86d9c4195fc8b5908654cb6b8e023cdb28416cce"],"min_disposable_balance_in_moac":2,"beneficiary":"","monitor":""},"vnode_protocol_base":{"sol_path":"./sol/nuwa1.0.8pre/VnodeProtocolBase.sol","contract_name":":VnodeProtocolBase","name":":VnodeProtocolBase","min_bond":1,"addr":"0x66ff34bd0c36490621296bd0832e4c86bbf11095"},"subChain_protocol_base":{"sol_path":"./sol/nuwa1.0.8pre/SubChainProtocolBase+SubChainBase.sol","contract_name":":SubChainProtocolBase","name":"anyname","min_bond":1,"protocol_type":0,"addr":"0xef3bde979571e074610e31d614d0818d169487ce","successful_func_call":{"register":[]}},"subChain_base":{"sol_path":"./sol/nuwa1.0.8pre/SubChainProtocolBase+SubChainBase.sol","contract_name":":SubChainBase","min_num_nodes":3,"max_num_nodes":10,"thousandth":1000,"flush_round":100,"num_of_blk_to_wait_for":{"min_nodes":20,"max_nodes_after_min_met":8},"addr":"","min_op_balance_in_moac":10,"min_registration_fee_in_moac":1,"successful_func_call":{"addFund":false,"registerOpen":false,"registerClose":false,"registerAsMonitor":false}}}
+{
+  "private_n_local_run": false,
+  "blk_num_scs_changed_to_enabled": 101,
+  "auto_state_save": true,
+
+  "gas_price_gsha": {
+    "min": 5,
+    "max": 600
+  },
+
+  "step_pause_enabled": false,
+
+  "check_interval_ms": 2000,
+  "interval_between_rpc_calls_ms": 4000,
+
+  "default_password": "1111",
+  "gas": {
+    "lv": {
+      "max": 9000000,
+      "mid": 5000000,
+      "min": 2000000
+    },
+    "usage": {
+      "send_value": "min",
+      "contract_deployment": "max",
+      "contract_func_call": "mid"
+    }
+  },
+  "vnode": {
+    "start_vnode_via_process": false,
+    "datadir_setting": "testnet",
+    "min_disposable_balance_in_moac": 3,
+
+    "chain_id": 101,
+    "log_verbosity": 4,
+    "service_endpoint": "127.0.0.1:50062",
+    "vnode_beneficial_addr": "0xf0e014cbf1185709fd0a0f8e5e8b13d6610efab9",
+
+    "ignore_sync": false,
+    "rpc": {
+      "addr": "127.0.0.1",
+      "port": 8545,
+      "api": "db,eth,net,web3,personal,chain3,admin,mc"
+    }
+  },
+
+  "scs_nodes": {
+    "scsids": [],
+    "min_disposable_balance_in_moac": 2,
+    "beneficiary": "",
+    "monitor": ""
+  },
+
+  "test_coin": {
+    "sol_path": "./sol/nuwa1.0.8pre/erc20.sol",
+    "contract_name": ":TestCoin",
+    "name": ":TestCoin",
+    "addr": "",
+    "successful_func_call": {
+      "TBD": false
+    }
+  },
+
+  "vnode_protocol_base": {
+    "sol_path": "./sol/nuwa1.0.8pre/VnodeProtocolBase.sol",
+    "contract_name": ":VnodeProtocolBase",
+    "name": ":VnodeProtocolBase",
+    "min_bond": 1,
+    "addr": "",
+    "successful_func_call": {
+      "register": false
+    }
+  },
+
+  "subChain_protocol_base": {
+    "sol_path": "./sol/nuwa1.0.8pre/SubChainProtocolBase+SubChainBase.sol",
+    "contract_name": ":SubChainProtocolBase",
+    "name": "anyname",
+    "min_bond": 1,
+    "protocol_type": 0,
+    "addr": "",
+    "successful_func_call": {
+      "register": []
+    }
+  },
+
+  "subChain_base": {
+    "sol_path": "./sol/nuwa1.0.8pre/SubChainProtocolBase+SubChainBase.sol",
+    "contract_name": ":SubChainBase",
+    "erc_rate": 1,
+    "min_num_nodes": 2,
+    "max_num_nodes": 10,
+    "thousandth": 1000,
+    "flush_round": 40,
+    "num_of_blk_to_wait_for": {
+      "min_nodes": 20,
+      "max_nodes_after_min_met": 8
+    },
+    "addr": "",
+    "min_op_balance_in_moac": 10,
+    "min_registration_fee_in_moac": 1,
+    "successful_func_call": {
+      "addFund": false,
+      "registerOpen": false,
+      "registerClose": false,
+      "registerAsMonitor": false
+    }
+  }
+}
