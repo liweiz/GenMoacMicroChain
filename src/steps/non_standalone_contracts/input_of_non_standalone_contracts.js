@@ -5,6 +5,8 @@ module.exports = state => ({
     params: [
       state.subChain_protocol_base.addr,
       state.vnode_protocol_base.addr,
+      state.test_coin.addr,
+      state.subChain_base.erc_rate,
       state.subChain_base.min_num_nodes,
       state.subChain_base.max_num_nodes,
       state.subChain_base.thousandth,

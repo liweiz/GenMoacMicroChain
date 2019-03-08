@@ -17,6 +17,24 @@ const state = initialState;
 const scsNodesProxy = new Proxy(initialState.scs_nodes, isSettingProp);
 state.scs_nodes = scsNodesProxy;
 
+const scsTestCoinFuncCallProxy = new Proxy(
+  initialState.test_coin.successful_func_call,
+  isSettingProp
+);
+state.test_coin.successful_func_call = scsTestCoinFuncCallProxy;
+
+const scsTestCoinProxy = new Proxy(
+  initialState.test_coin,
+  isSettingProp
+);
+state.test_coin = scsTestCoinProxy;
+
+const scsVnodeProtocolBaseFuncCallProxy = new Proxy(
+  initialState.vnode_protocol_base.successful_func_call,
+  isSettingProp
+);
+state.vnode_protocol_base.successful_func_call = scsVnodeProtocolBaseFuncCallProxy;
+
 const scsVnodeProtocolBaseProxy = new Proxy(
   initialState.vnode_protocol_base,
   isSettingProp

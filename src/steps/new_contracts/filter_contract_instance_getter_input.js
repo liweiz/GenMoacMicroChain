@@ -23,6 +23,9 @@ const objInArrayOut = (ctx, objWithAllInputs, forNew) =>
       const contractName = input.name;
       let toCreateNew;
       switch (contractName) {
+        case ctx.state.test_coin.contract_name:
+          toCreateNew = ctx.test_coin.create_new;
+          break;
         case ctx.state.vnode_protocol_base.contract_name:
           toCreateNew = ctx.vnode_protocol_base.create_new;
           break;

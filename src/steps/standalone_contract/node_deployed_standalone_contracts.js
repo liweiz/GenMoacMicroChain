@@ -12,6 +12,9 @@ const sideWork = async ctx => {
     const contracts = await deployed(ctx.vnode.chain3, solInputs);
     contracts.forEach((contract, i) => {
       switch (solInputs[i].name) {
+        case ctx.state.test_coin.contract_name:
+          ctx.test_coin.instance = contract;
+          break;
         case ctx.state.vnode_protocol_base.contract_name:
           ctx.vnode_protocol_base.instance = contract;
           break;

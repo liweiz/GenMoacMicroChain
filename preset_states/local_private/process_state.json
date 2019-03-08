@@ -39,7 +39,7 @@
     "ignore_sync": true,
     "rpc": {
       "addr": "127.0.0.1",
-      "port": 20001,
+      "port": 8545,
       "api": "db,eth,net,web3,personal,chain3,admin,mc,vnode,scs"
     }
   },
@@ -51,8 +51,18 @@
     "monitor": ""
   },
 
+  "test_coin": {
+    "sol_path": "./sol/nuwa1.0.8pre/erc20.sol",
+    "contract_name": ":TestCoin",
+    "name": ":TestCoin",
+    "addr": "",
+    "successful_func_call": {
+      "TBD": false
+    }
+  },
+
   "vnode_protocol_base": {
-    "sol_path": "./sol/nuwa1.0.6/VnodeProtocolBase.sol",
+    "sol_path": "./sol/nuwa1.0.8pre/VnodeProtocolBase.sol",
     "contract_name": ":VnodeProtocolBase",
     "name": ":VnodeProtocolBase",
     "min_bond": 1,
@@ -63,7 +73,7 @@
   },
 
   "subChain_protocol_base": {
-    "sol_path": "./sol/nuwa1.0.7/SubChainProtocolBase.sol",
+    "sol_path": "./sol/nuwa1.0.8pre/SubChainProtocolBase+SubChainBase.sol",
     "contract_name": ":SubChainProtocolBase",
     "name": "anyname",
     "min_bond": 1,
@@ -75,12 +85,13 @@
   },
 
   "subChain_base": {
-    "sol_path": "./sol/nuwa1.0.7/SubChainProtocolBase.sol",
+    "sol_path": "./sol/nuwa1.0.8pre/SubChainProtocolBase+SubChainBase.sol",
     "contract_name": ":SubChainBase",
-    "min_num_nodes": 3,
+    "erc_rate": 1,
+    "min_num_nodes": 2,
     "max_num_nodes": 10,
     "thousandth": 1000,
-    "flush_round": 100,
+    "flush_round": 40,
     "num_of_blk_to_wait_for": {
       "min_nodes": 20,
       "max_nodes_after_min_met": 8

@@ -51,22 +51,12 @@
     "monitor": ""
   },
 
-  "test_coin": {
-    "sol_path": "./sol/nuwa1.0.8pre/erc20.sol",
-    "contract_name": ":TestCoin",
-    "name": ":TestCoin",
-    "addr": "",
-    "successful_func_call": {
-      "TBD": false
-    }
-  },
-
   "vnode_protocol_base": {
     "sol_path": "./sol/nuwa1.0.8pre/VnodeProtocolBase.sol",
     "contract_name": ":VnodeProtocolBase",
     "name": ":VnodeProtocolBase",
     "min_bond": 1,
-    "addr": "0x5B43583F33214c790B8206D9B06685c49A1DB455"
+    "addr": ""
   },
 
   "subChain_protocol_base": {
@@ -84,11 +74,10 @@
   "subChain_base": {
     "sol_path": "./sol/nuwa1.0.8pre/SubChainProtocolBase+SubChainBase.sol",
     "contract_name": ":SubChainBase",
-    "erc_rate": 1,
-    "min_num_nodes": 2,
+    "min_num_nodes": 3,
     "max_num_nodes": 10,
     "thousandth": 1000,
-    "flush_round": 40,
+    "flush_round": 100,
     "num_of_blk_to_wait_for": {
       "min_nodes": 20,
       "max_nodes_after_min_met": 8

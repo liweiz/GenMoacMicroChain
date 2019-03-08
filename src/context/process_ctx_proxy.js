@@ -29,6 +29,9 @@ ctx.total_cost_in_sha = totalCostProxy;
 const scsProxy = new Proxy(ctx.scs_nodes, isSettingProp);
 ctx.scs_nodes = scsProxy;
 
+const testCoinProxy = new Proxy(ctx.test_coin, isSettingProp);
+ctx.test_coin = testCoinProxy;
+
 const vnodeProtocolProxy = new Proxy(ctx.vnode_protocol_base, isSettingProp);
 ctx.vnode_protocol_base = vnodeProtocolProxy;
 

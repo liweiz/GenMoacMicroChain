@@ -95,7 +95,7 @@ const genOfNode = (funcNameInContract, contractName, amountInMoac, ...params) =>
         funcNameInContract === 'register' &&
         contractName === ctx.state.vnode_protocol_base.contract_name
       ) {
-        params = [ctx.scs_nodes.need_funding, ];
+        params = [ctx.state.vnode.vnode_beneficial_addr, `${ctx.state.vnode.rpc.addr}:${ctx.state.vnode.rpc.port}`];
       }
       try {
         switch (params.length) {

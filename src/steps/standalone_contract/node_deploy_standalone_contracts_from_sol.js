@@ -18,6 +18,10 @@ const sideWork = async ctx => {
     );
     contracts.forEach((contract, i) => {
       switch (solInputs[i].name) {
+        case ctx.state.test_coin.contract_name:
+          ctx.test_coin.instance = contract;
+          ctx.state.test_coin.addr = contract.address;
+          break;
         case ctx.state.vnode_protocol_base.contract_name:
           ctx.vnode_protocol_base.instance = contract;
           ctx.state.vnode_protocol_base.addr = contract.address;
