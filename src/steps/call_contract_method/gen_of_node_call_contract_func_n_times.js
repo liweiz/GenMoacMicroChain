@@ -215,6 +215,21 @@ const genOfNode = (
           // true is successful
           const result = [params, funcCallOk];
           switch (contractName) {
+            case ':SubChainProtocolBase':
+	              switch (funcNameInContract) {
+	                case 'register':
+	                  ctx.state.subChain_protocol_base.successful_func_call.register = ctx.state.subChain_protocol_base.successful_func_call.register.concat(
+	                    [result]
+	                  );
+	                  break;
+	                default:
+	                  throw Error(
+	                    `func name "${funcNameInContract}" of contract "${contractName}" at address "${
+	                      contractInstance.address
+	                    }" not among supported list`
+	                  );
+	              }
+	              break;
             case ':SubChainBase':
               switch (funcNameInContract) {
                 case 'addFund':
