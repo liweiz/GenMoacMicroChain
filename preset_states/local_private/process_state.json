@@ -88,8 +88,8 @@
     "sol_path": "./sol/nuwa1.0.8pre/SubChainProtocolBase+SubChainBase.sol",
     "contract_name": ":SubChainBase",
     "erc_rate": 1,
-    "min_num_nodes": 2,
-    "max_num_nodes": 10,
+    "min_num_nodes": 3,
+    "max_num_nodes": 11,
     "thousandth": 1000,
     "flush_round": 40,
     "num_of_blk_to_wait_for": {
