@@ -89,7 +89,7 @@ const genOfNode = (funcNameInContract, contractName, amountInMoac, ...params) =>
         funcNameInContract === 'registerAsMonitor' &&
         contractName === ctx.state.subChain_base.contract_name
       ) {
-        params = [ctx.state.scs_nodes.monitor];
+        params = [ctx.state.scs_nodes.monitor, `${ctx.state.scs_nodes.monitor_rpc_link_addr}:${ctx.state.scs_nodes.monitor_rpc_link_port}`];
       }
       if (
         funcNameInContract === 'register' &&

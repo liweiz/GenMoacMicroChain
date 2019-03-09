@@ -48,7 +48,11 @@
     "scsids": [],
     "min_disposable_balance_in_moac": 2,
     "beneficiary": "",
-    "monitor": ""
+    "monitor": "",
+    "monitor_rpc_addr": "0.0.0.0",
+    "monitor_rpc_port": "23456",
+    "monitor_rpc_link_addr": "",
+    "monitor_rpc_link_port": ""
   },
 
   "test_coin": {

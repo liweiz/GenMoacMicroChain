@@ -6,6 +6,7 @@ const ensureDirsOnPath = require('../util/ensure_dirs_on_path_exist');
 const genUserconfig = require('./gen_userconfig');
 const cpStdoToFile = require('../util/child_process_stdo_to_file');
 const catchScsids = require('../util/watch_n_report_new_addrs.js');
+const ctx = require('../context/process_ctx_proxy');
 
 let scsserverDirPath;
 let scsNodesDirPath;
@@ -74,9 +75,9 @@ module.exports = async (scsNodeName, address, isMonitor = false) => {
       ? [
         '--rpc',
         '--rpcaddr',
-        '0.0.0.0',
+        ctx.state.scs_nodes.monitor_rpc_addr,
         '--rpcport',
-        '23456'
+        ctx.state.scs_nodes.monitor_rpc_port
       ]
       : [];
 
