@@ -1,5 +1,6 @@
 const cp = require('child_process');
 const cfg = require('../../../config.json');
+const ctx = require('../../context/process_ctx_proxy');
 const cpStdoToFile = require('../../util/child_process_stdo_to_file');
 
 /**
@@ -26,6 +27,8 @@ module.exports = () =>
     }
 
     const spawned = cp.spawn(moacPath, [
+      '--networkid',
+      ctx.state.vnode.chain_id,
       '--datadir',
       datadirPath,
       'init',
