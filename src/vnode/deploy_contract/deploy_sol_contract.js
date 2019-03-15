@@ -1,6 +1,8 @@
 const fs = require('fs');
 const solc = require('solc');
 // const getNonce = require('../get_tx_nonce');
+const checkExisting = require('./get_existing_contract_abi_n_data');
+const ctx = require('../../context/process_ctx_proxy');
 
 /**
  * @typedef T
@@ -33,10 +35,20 @@ module.exports = async (
   const fromAddress = fromAddr === 'coinbase' ? chain3.mc.coinbase : fromAddr;
   // const nonce = await getNonce(chain3, fromAddress);
   return new Promise((res, rej) => {
-    const solSource = fs.readFileSync(solFilePath, 'utf8');
-    const compiledContract = solc.compile(solSource, 1);
-    const abi = compiledContract.contracts[contractName].interface;
-    const { bytecode } = compiledContract.contracts[contractName];
+    var abi;
+    var data;
+    const result = checkExisting(ctx.state, contractName);
+    if (result.useSol) {
+      const solSource = fs.readFileSync(solFilePath, 'utf8');
+      const compiledContract = solc.compile(solSource, 1);
+      abi = compiledContract.contracts[contractName].interface;
+      const { bytecode } = compiledContract.contracts[contractName];
+      data = `0x${bytecode}`;
+    } else {
+      abi = result.abi;
+      data = result.data;
+    }
+
     const contractOfX = chain3.mc.contract(JSON.parse(abi));
 
     const aCallback = (err, contract) => {
@@ -54,7 +66,7 @@ module.exports = async (
     };
 
     const txObj = {
-      data: `0x${bytecode}`,
+      data: data,
       from: fromAddress,
       gas: gasBudget
       // gasPrice
