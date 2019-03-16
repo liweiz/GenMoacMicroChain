@@ -41,7 +41,7 @@ module.exports = async (
     if (result.useSol) {
       const solSource = fs.readFileSync(solFilePath, 'utf8');
       const compiledContract = solc.compile(solSource, 1);
-      abi = compiledContract.contracts[contractName].interface;
+      abi = JSON.parse(compiledContract.contracts[contractName].interface);
       const { bytecode } = compiledContract.contracts[contractName];
       data = `0x${bytecode}`;
     } else {
@@ -49,7 +49,7 @@ module.exports = async (
       data = result.data;
     }
 
-    const contractOfX = chain3.mc.contract(JSON.parse(abi));
+    const contractOfX = chain3.mc.contract(abi);
 
     const aCallback = (err, contract) => {
       if (err === null && contract) {

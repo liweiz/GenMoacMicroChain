@@ -25,10 +25,10 @@ module.exports = async (chain3, solFilePath, contractName) =>
     if (result.useSol) {
       const solSource = fs.readFileSync(solFilePath, 'utf8');
       const compiledContract = solc.compile(solSource, 1);
-      abi = compiledContract.contracts[contractName].interface;
+      abi = JSON.parse(compiledContract.contracts[contractName].interface);
     } else {
       abi = result.abi;
     }
-    const contractOfX = chain3.mc.contract(JSON.parse(abi));
+    const contractOfX = chain3.mc.contract(abi);
     res(contractOfX);
   });
