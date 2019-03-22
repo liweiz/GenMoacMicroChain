@@ -7,6 +7,7 @@ const waitForMiningTillBalance = require('../../steps/interval_check_balances_of
 const nodeUnlockAddrWDefault = require('../../steps/unlock_sending_addr_w_default_password/node_unlock_sending_addr_w_default_password');
 const nodeNewScs = require('../new_scs_nodes/node_new_scs_nodes');
 const nodeNewScsMonitor = require('../new_scs_monitor_node/node_new_scs_monitor_node');
+const nodeNewScsDebugMonitor = require('../new_scs_monitor_node/node_new_scs_debug_monitor_node');
 const nodeDeployedContracts = require('../deployed_contracts/node_deployed_contracts');
 const nodeVnodeRegistration = require('../vnode_registration/node_vnode_registration');
 const nodeScsFunded = require('../ensure_scsids_funded/node_ensure_scsids_funded');
@@ -51,6 +52,8 @@ const nodeRoot = rawNode => {
     }
     rawNode.kids.push(nodeLiveChain(genRawNode(rawNode)));
     rawNode.kids.push(nodeNewScsMonitor(genRawNode(rawNode)));
+    rawNode.kids.push(nodeCallRegisterAsMonitorFunc(genRawNode(rawNode)));
+    rawNode.kids.push(nodeNewScsDebugMonitor(genRawNode(rawNode)));
     rawNode.kids.push(nodeCallRegisterAsMonitorFunc(genRawNode(rawNode)));
   };
 

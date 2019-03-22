@@ -31,10 +31,13 @@ switch (process.platform) {
  *
  * @param {string} scsNodeName - name of the scs node
  * @param {string} address - account address of beneficiary
- * @param {boolean} isMonitor - true, if the scs node is used as a monitor
+ * @param {int} monitorType - zero, if the scs node is not used as a monitor.
+ *                            one, if the scs node is used as a normal monitor.
+ *                            two, if the scs node is used as a debug monitor.
+ *                            default is zero.
  * @returns {Promise<string>}
  */
-module.exports = async (scsNodeName, address, isMonitor = false) => {
+module.exports = async (scsNodeName, address, monitorType = 0) => {
   // generate userconfig.json
   // 1. create dir for a specific scs and its config respectively
   const nodeDirPath = scsNodesDirPath + scsNodeName + path.sep;
@@ -71,15 +74,34 @@ module.exports = async (scsNodeName, address, isMonitor = false) => {
     });
 
     // 3. has to get into the node's bin dir and run
-    const argList = isMonitor
-      ? [
-        '--rpc',
-        '--rpcaddr',
-        ctx.state.scs_nodes.monitor_rpc_addr,
-        '--rpcport',
-        ctx.state.scs_nodes.monitor_rpc_port
-      ]
-      : [];
+    var argList;
+    switch (monitorType) {
+      case 0:
+        argList = [];
+        break;
+      case 1:
+        argList = [
+          '--rpc',
+          '--rpcaddr',
+          ctx.state.scs_nodes.monitor_rpc_addr,
+          '--rpcport',
+          ctx.state.scs_nodes.monitor_rpc_port
+        ];
+        break;
+      case 2:
+        argList = [
+          '--rpcdebug',
+          '--rpcaddr',
+          ctx.state.scs_nodes.monitor_rpcdebug_addr,
+          '--rpcport',
+          ctx.state.scs_nodes.monitor_rpcdebug_port
+        ];
+        break;
+      default:
+        throw Error(
+          `monitor type "${monitorType}" is not among existing ones. Available options: 0, 1, 2.`
+        );
+    }
 
     const spawned = cp.spawn(
       currentDirRelativeForm + scsserverFileName,

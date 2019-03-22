@@ -12,15 +12,15 @@ const newScsNode = async ctx => {
     bene = ctx.state.scs_nodes.beneficiary;
   }
   try {
-    logger.info(`creating scs monitor node`);
-    const scsid = await upNRunScsNode(`scs_monitor`, bene, 1);
-    logger.info(`scsid caught, scs_monitor, ${scsid}`);
-    logger.info(`scs monitor node created`);
+    logger.info(`creating scs debug monitor node`);
+    const scsid = await upNRunScsNode(`scs_debug_monitor`, bene, 2);
+    logger.info(`scsid caught, scs_debug_monitor, ${scsid}`);
+    logger.info(`scs debug monitor node created`);
     logger.info(
       `please open the log file under above mentioned directory to monitor micro-chain block generation`
     );
     // to trigger 'state updated' event
-    ctx.state.scs_nodes.monitor = scsid;
+    ctx.state.scs_nodes.debug_monitor = scsid;
   } catch (err) {
     throw err;
   }
@@ -28,7 +28,7 @@ const newScsNode = async ctx => {
 
 const nodeNewScs = rawNode => {
   rawNode.setSideWork(newScsNode);
-  rawNode.sideWorkDescription = 'create and run local scs monitor node';
+  rawNode.sideWorkDescription = 'create and run local scs debug monitor node';
   return rawNode;
 };
 

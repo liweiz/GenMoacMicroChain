@@ -50,9 +50,14 @@
     "beneficiary": "",
     "monitor": "",
     "monitor_rpc_addr": "0.0.0.0",
-    "monitor_rpc_port": "23456",
+    "monitor_rpc_port": "23455",
     "monitor_rpc_link_addr": "",
-    "monitor_rpc_link_port": ""
+    "monitor_rpc_link_port": "",
+    "debug_monitor": "",
+    "monitor_rpcdebug_addr": "0.0.0.0",
+    "monitor_rpcdebug_port": "23456",
+    "monitor_rpcdebug_link_addr": "",
+    "monitor_rpcdebug_link_port": ""
   },
 
   "test_coin": {
